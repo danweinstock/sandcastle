@@ -1,5 +1,6 @@
-class ReviewController < ApplicationController
-before_filter :load_prodcut
+class ReviewsController < ApplicationController
+before_filter :ensure_logged_in, only: [:create, :destroy]
+before_filter :load_product
 
   def show
   	@review = Review.find(params[:id])
@@ -12,7 +13,7 @@ before_filter :load_prodcut
   	if @review.save
   		redirect_to products_path, notice: "Review created successfully"
   	else
-  		render 'prodcuts/show'
+  		render 'products/show'
   	end
   end
 

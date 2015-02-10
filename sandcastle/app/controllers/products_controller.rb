@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   	@product = Product.find(params[:id])
 
     if current_user
-      @review = @product.reviews.build
+      @review = @product.reviews.build if current_user
     end
   end
 
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-  	@product = Product.find(param[:id])
+  	@product = Product.find(params[:id])
   end
 
   def create
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-  	@products = Product.find(params[:id])
+  	@product = Product.find(params[:id])
   	@product.destroy
   	redirect_to product_path
   end
